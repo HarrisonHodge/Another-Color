@@ -1,2 +1,2 @@
 # Color-Flipper
-Files for running a local web page that generates a random hex code on click.
+Fun color switcher that uses CSS colors or hex values
