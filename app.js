@@ -142,50 +142,28 @@ const colors = [
   "YellowGreen",
 ];
 
-const btn1 = document.getElementById("btn1");
-const btn2 = document.getElementById("btn2");
-const btn3 = document.getElementById("btn3");
-const btn4 = document.getElementById("btn4");
-const color1 = document.querySelector(".color1");
-const color2 = document.querySelector(".color2");
-const color3 = document.querySelector(".color3");
-
-btn1.addEventListener("click", function () {
-  const randomNumber = getRandomNumber();
-
-  document.getElementById("cont-1").style.backgroundColor = colors[randomNumber];
-  color1.textContent = colors[randomNumber];
-});
-
-btn2.addEventListener("click", function () {
-  const randomNumber = getRandomNumber();
-
-  document.getElementById("cont-2").style.backgroundColor = colors[randomNumber];
-  color2.textContent = colors[randomNumber];
-});
-
-btn3.addEventListener("click", function () {
-  const randomNumber = getRandomNumber();
-
-  document.getElementById("cont-3").style.backgroundColor = colors[randomNumber];
-  color3.textContent = colors[randomNumber];
-});
-
-btn4.addEventListener("click", function () {
-    const randomNumber1 = getRandomNumber();
-    const randomNumber2 = getRandomNumber();
-    const randomNumber3 = getRandomNumber();
-
-    document.getElementById("cont-1").style.backgroundColor = colors[randomNumber1];
-    color1.textContent = colors[randomNumber1];
-
-    document.getElementById("cont-2").style.backgroundColor = colors[randomNumber2];
-    color2.textContent = colors[randomNumber2];
+const buttons = [
+    { btn: "btn1", color: "color1", container: "cont-1" },
+    { btn: "btn2", color: "color2", container: "cont-2" },
+    { btn: "btn3", color: "color3", container: "cont-3" }
+  ];
   
-    document.getElementById("cont-3").style.backgroundColor = colors[randomNumber3];
-    color3.textContent = colors[randomNumber3];
+  buttons.forEach(({ btn, color, container }) => {
+    document.getElementById(btn).addEventListener("click", () => {
+      const randomColor = getRandomColor();
+      document.getElementById(container).style.backgroundColor = randomColor;
+      document.querySelector(`.${color}`).textContent = randomColor;
+    });
   });
-
-function getRandomNumber() {
-  return Math.floor(Math.random() * colors.length);
-}
+  
+  document.getElementById("btn4").addEventListener("click", () => {
+    buttons.forEach(({ color, container }) => {
+      const randomColor = getRandomColor();
+      document.getElementById(container).style.backgroundColor = randomColor;
+      document.querySelector(`.${color}`).textContent = randomColor;
+    });
+  });
+  
+  function getRandomColor() {
+    return colors[Math.floor(Math.random() * colors.length)];
+  }
